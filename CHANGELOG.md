@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+### Changed
+
+- **Published to GitHub Packages.** The npm package is now scoped to `@wyre-technology/autotask-mcp` (GitHub Packages rejects unscoped names) and `@semantic-release/npm` `npmPublish` is enabled. The release workflow now configures an authenticated `.npmrc` for `npm.pkg.github.com` and grants `packages: write`. The unscoped `bin` command name (`autotask-mcp`), the `io.github.wyre-technology/autotask-mcp` MCP Registry identifier, and the GHCR image name are unchanged.
+
 ### Added
 
 - **`issueType` and `subIssueType` on `autotask_update_ticket`** ([#109](https://github.com/wyre-technology/autotask-mcp/issues/109)). Both fields are already accepted by the underlying payload builder (and have always been exposed on `autotask_create_ticket`), but the update tool's input schema didn't advertise them — so triage workflows couldn't change ticket issue classification on an existing ticket without falling back to `autotask_raw_request`. Added them as optional numeric picklist IDs with the same descriptions used on `autotask_create_ticket`. New tests in `tests/lazy-loading.test.ts` pin the schema shape and assert the handler forwards both fields to `updateTicket()`.
